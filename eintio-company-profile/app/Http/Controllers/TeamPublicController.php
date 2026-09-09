@@ -8,7 +8,8 @@ class TeamPublicController extends Controller
 {
     public function index()
     {
-        $members = Team::where('is_active', true)
+        $members = Team::with('division')
+            ->where('is_active', true)
             ->orderBy('order')
             ->get();
 

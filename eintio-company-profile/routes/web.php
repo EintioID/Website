@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\WebinarController;
 use App\Http\Controllers\Admin\WebinarParticipantController;
 
+
 // ===== HALAMAN PUBLIK (User) =====
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/profil', [HomeController::class, 'profile'])->name('profile');
@@ -34,6 +35,16 @@ Route::get('/portofolio/{portfolio:slug}', [PortfolioPublicController::class, 's
 Route::get('/tim', [TeamPublicController::class, 'index'])->name('teams');
 Route::get('/blog', [BlogPublicController::class, 'index'])->name('blog');
 Route::get('/blog/{blogPost:slug}', [BlogPublicController::class, 'show'])->name('blog.show');
+Route::get('/testimoni', [
+    \App\Http\Controllers\TestimonialController::class,
+    'index'
+])->name('testimoni');
+
+
+Route::post('/testimoni', [
+    \App\Http\Controllers\TestimonialController::class,
+    'store'
+])->name('testimoni.store');
 Route::get('/contact', [ContactPublicController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactPublicController::class, 'store'])->name('contact.store');
 

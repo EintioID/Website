@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Profile;
+use App\Models\CoreValue;
 
 class HomeController extends Controller
 {
@@ -11,14 +13,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        return view('index');
     }
 
-    /**
-     * Display the company profile page
-     */
     public function profile()
-    {
-        return view('profile');
-    }
+{
+    $profile = Profile::first() ?? new Profile();
+
+    $coreValues = CoreValue::orderBy('id')->get();
+
+    return view('profile', compact('profile', 'coreValues'));
+}
 }

@@ -29,7 +29,7 @@ class Profile extends Model
         'cta_2_label',
         'cta_2_url',
     ];
-,
+
     protected $casts = [
         'mission' => 'array',
     ];
