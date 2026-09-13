@@ -1040,9 +1040,9 @@ footer{
   <div class="container sektor-grid">
     <div><span class="badge badge-green">Target Kami</span><h2>Mendukung <span class="accent">Berbagai Sektor</span></h2><p>Kami merancang solusi spesifik untuk tantangan unik yang dihadapi bisnis dan akademik.</p></div>
     <div class="sektor-cards">
-      <div class="sektor-card"><img src="{{ asset('assets/3_Business_people_teamwork_and_meeting.png') }}" alt="Pelaku bisnis"><div class="sektor-overlay"><span class="sektor-num">– 01</span><h3>Pelaku Bisnis</h3><p>Transformasi digital untuk efisiensi operasional.</p><div class="arrow-btn"><i class="fa-solid fa-arrow-right"></i></div></div></div>
-      <div class="sektor-card"><img src="{{ asset('assets/3_What_will_the_future_campus_look.png') }}" alt="Institusi pendidikan"><div class="sektor-overlay"><span class="sektor-num">– 02</span><h3>Institusi Pendidikan</h3><p>Sistem manajemen akademik terintegrasi.</p><div class="arrow-btn"><i class="fa-solid fa-arrow-right"></i></div></div></div>
-      <div class="sektor-card"><img src="{{ asset('assets/4_1_509_200_Woman_Working_Laptop_Stock.png') }}" alt="Individu profesional"><div class="sektor-overlay"><span class="sektor-num">– 03</span><h3>Individu Profesional</h3><p>Pendampingan akademik dan peningkatan skill.</p><div class="arrow-btn"><i class="fa-solid fa-arrow-right"></i></div></div></div>
+      <div class="sektor-card"><img src="{{ asset('assets/bi.png') }}" alt="Pelaku bisnis"><div class="sektor-overlay"><span class="sektor-num">– 01</span><h3>Pelaku Bisnis</h3><p>Transformasi digital untuk efisiensi operasional.</p><div class="arrow-btn"><i class="fa-solid fa-arrow-right"></i></div></div></div>
+      <div class="sektor-card"><img src="{{ asset('assets/ip.png') }}" alt="Institusi pendidikan"><div class="sektor-overlay"><span class="sektor-num">– 02</span><h3>Institusi Pendidikan</h3><p>Sistem manajemen akademik terintegrasi.</p><div class="arrow-btn"><i class="fa-solid fa-arrow-right"></i></div></div></div>
+      <div class="sektor-card"><img src="{{ asset('assets/inp.png') }}" alt="Individu profesional"><div class="sektor-overlay"><span class="sektor-num">– 03</span><h3>Individu Profesional</h3><p>Pendampingan akademik dan peningkatan skill.</p><div class="arrow-btn"><i class="fa-solid fa-arrow-right"></i></div></div></div>
     </div>
   </div>
 </section>
@@ -1059,10 +1059,26 @@ footer{
   <div class="container">
     <div class="porto-head"><div><h2>Portofolio Terpilih</h2><p>Intip bagaimana kami membantu mitra kami mencapai target melalui solusi digital.</p></div><a class="link-arrow" href="{{ url('/portofolio') }}">Lihat Semua Projek <i class="fa-solid fa-arrow-right"></i></a></div>
     <div class="porto-grid">
-      <div class="porto-card"><img src="{{ asset('assets/5_Modern_office_workspace_with_business.png') }}" alt="Projek dashboard"><div class="porto-body"><h4>Dashboard Analitik Terpadu</h4><p>Custom Software Development</p></div></div>
-      <div class="porto-card"><img src="{{ asset('assets/1_Data_Analysis_Workspace_Laptop_Tablet.png') }}" alt="Projek analisis data"><div class="porto-body"><h4>Sistem Informasi Akademik</h4><p>Digital Transformation</p></div></div>
-      <div class="porto-card"><img src="{{ asset('assets/10_Data_analysis_workspace_with_laptop.png') }}" alt="Projek riset"><div class="porto-body"><h4>Analisis Data Riset</h4><p>Academic Data Analysis</p></div></div>
-    </div>
+    @forelse($portfolios as $portfolio)
+        <a href="{{ route('portfolios.show', ['portfolio' => $portfolio->slug]) }}" class="porto-card">
+            <div class="porto-img">
+                <img
+                    src="{{ $portfolio->image ? asset('storage/' . $portfolio->image) : asset('images/portofolio/hero.jpg') }}"
+                    alt="{{ $portfolio->title }}"
+                >
+            </div>
+
+            <div class="porto-body">
+                <h4>{{ $portfolio->title }}</h4>
+                <p>{{ $portfolio->category?->name ?? 'Tanpa Kategori' }}</p>
+            </div>
+        </a>
+    @empty
+        <div class="porto-empty">
+            <p>Belum ada portofolio yang ditampilkan.</p>
+        </div>
+    @endforelse
+</div>
   </div>
 </section>
 
@@ -1081,7 +1097,7 @@ footer{
   <div class="testi-card"><div class="stars">★★★★★</div><blockquote>"Tim yang sangat responsif. Sistem informasi akademik yang mereka bangun telah mengubah total cara kami berinteraksi dan melayani mahasiswa."</blockquote><div class="testi-person"><div class="avatar av-navy">BW</div><div><h5>Bambang Wijaya</h5><span>Direktur IT, Univ. Harapan</span></div></div></div>
 </div></div></section>
 
-<div class="container cta-wrap"><div class="cta"><div><h2>Siap Untuk Mulai<br>Bertransformasi?</h2><p>Jangan biarkan institusi Anda tertinggal. Mulai langkah pertama Anda menuju era digital bersama PT Eintio Academic &amp; Technology hari ini untuk solusi yang efisien dan berdampak.</p><a class="btn-yellow" href="https://wa.me/628112225804" target="_blank" rel="noopener noreferrer">Konsultasi Sekarang Gratis <i class="fa-solid fa-comment"></i></a></div><div class="cta-img"><img src="{{ asset('assets/6_Circuit_board_electronic_dark_computer.png') }}" alt="Teknologi digital"></div></div></div>
+<div class="container cta-wrap"><div class="cta"><div><h2>Siap Untuk Mulai<br>Bertransformasi?</h2><p>Jangan biarkan institusi Anda tertinggal. Mulai langkah pertama Anda menuju era digital bersama PT Eintio Academic &amp; Technology hari ini untuk solusi yang efisien dan berdampak.</p><a class="btn-yellow" href="https://wa.me/628112225804" target="_blank" rel="noopener noreferrer">Konsultasi Sekarang Gratis <i class="fa-solid fa-comment"></i></a></div><div class="cta-img"><img src="{{ asset('assets/atg.png') }}" alt="Teknologi digital"></div></div></div>
 
 <footer><div class="container footer-grid">
   <div><div class="footer-brand"><img src="{{ asset('images/ikon.png') }}" alt="Eintio Logo" class="logo-img"><span>PT Eintio Academic &amp; Technology</span></div><p>Menyediakan solusi digital terintegrasi dan pendampingan akademik profesional untuk masa depan bisnis dan pendidikan Indonesia yang lebih cerah.</p>
